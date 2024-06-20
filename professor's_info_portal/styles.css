@@ -1,0 +1,41 @@
+body {
+    background-color: #6aab252f;
+}
+
+.nav-link {
+    font-weight: bold;
+    color: #495057;
+}
+
+.nav-link.active {
+    color: #6BAB25;
+}
+
+.nav-link:hover{
+    color: #6aab25af;
+}
+
+.card{
+    background-color: #6aab2510;
+}
+
+.btn-primary {
+    background-color: #6BAB25;
+    border-color: #6BAB25;
+}
+
+.btn-primary:hover {
+    background-color: #5D8B23;
+    border-color: #5D8B23;
+}
+
+.btn-primary:active {
+    background-color: #6BAB25 !important;
+    border-color: #6BAB25 !important;
+    transition: 0ms;
+}
+
+.card-header {
+    font-size: large;
+    font-weight: bold;
+}

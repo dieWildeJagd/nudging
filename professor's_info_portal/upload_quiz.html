@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Quiz</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-3">
+                <nav class="nav flex-column">
+                    <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    <a class="nav-link active" href="#">Upload Quiz</a>
+                    <a class="nav-link" href="materials.html">Materials</a>
+                    <a class="nav-link" href="settings.html">Settings</a>
+                </nav>
+            </div>
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">
+                        Upload Quiz Questions
+                    </div>
+                    <div class="card-body">
+                        <form id="quizForm">
+                            <div class="mb-3">
+                                <label for="quizTitle" class="form-label">Quiz Title</label>
+                                <input type="text" class="form-control" id="quizTitle" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="quizDescription" class="form-label">Description</label>
+                                <textarea class="form-control" id="quizDescription" rows="3" required></textarea>
+                            </div>
+                            <div id="questionsContainer">
+                                <div class="question-item mb-3" id="question1">
+                                    <label class="form-label">Question 1</label>
+                                    <input type="text" class="form-control mb-2" id="questionInput1" required>
+                                    <label class="form-label">Answer</label>
+                                    <input type="text" class="form-control mb-2" id="answerInput1" required>
+                                    <button type="button" class="btn btn-danger remove-question">Remove Question</button>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-secondary" id="addQuestion">Add Question</button>
+                            <button type="submit" class="btn btn-primary">Submit Quiz</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="upload_quiz.js"></script>
+</body>
+</html>
