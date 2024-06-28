@@ -12,6 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add more question-answer pairs as needed
     ];
 
+    // Utility function to create list items
+    const createListItem = (content, className = 'list-group-item') => {
+        const li = document.createElement('li');
+        li.className = className;
+        li.innerHTML = content;
+        return li;
+    };
+
     // Update student count
     const studentCountElement = document.getElementById('studentCount');
     if (studentCountElement) {
@@ -21,24 +29,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update recent activities
     const recentActivitiesElement = document.getElementById('recentActivities');
     if (recentActivitiesElement) {
-        recentActivitiesElement.innerHTML = '';
+        const activitiesFragment = document.createDocumentFragment();
+        recentActivitiesElement.innerHTML = ''; // Clear existing content
         recentActivities.forEach(activity => {
-            const li = document.createElement('li');
-            li.classList.add('list-group-item');
-            li.textContent = activity;
-            recentActivitiesElement.appendChild(li);
+            activitiesFragment.appendChild(createListItem(activity));
         });
+        recentActivitiesElement.appendChild(activitiesFragment);
     }
 
     // Update quiz questions and answers
     const quizQAListElement = document.getElementById('quizQAList');
     if (quizQAListElement) {
-        quizQAListElement.innerHTML = '';
+        const qaFragment = document.createDocumentFragment();
+        quizQAListElement.innerHTML = ''; // Clear existing content
         quizQA.forEach(qa => {
-            const li = document.createElement('li');
-            li.classList.add('list-group-item');
-            li.innerHTML = `<strong>Q:</strong> ${qa.question} <br><strong>A:</strong> ${qa.answer}`;
-            quizQAListElement.appendChild(li);
+            const content = `<strong>Q:</strong> ${qa.question} <br><strong>A:</strong> ${qa.answer}`;
+            qaFragment.appendChild(createListItem(content));
         });
+        quizQAListElement.appendChild(qaFragment);
     }
 });

@@ -1,29 +1,42 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var questionCount = 1;
-    var addQuestionButton = document.getElementById('addQuestion');
-    var questionsContainer = document.getElementById('questionsContainer');
+    let questionCount = 1;
+    const addQuestionButton = document.getElementById('addQuestion');
+    const questionsContainer = document.getElementById('questionsContainer');
+    const quizForm = document.getElementById('quizForm');
+
+    // Function to create a question block
+    const createQuestionBlock = (count) => `
+        <div class="question-item mb-3" id="question${count}">
+            <label class="form-label">Question ${count}</label>
+            <input type="text" class="form-control mb-2" id="questionInput${count}" required>
+            <label class="form-label">Answer</label>
+            <input type="text" class="form-control mb-2" id="answerInput${count}" required>
+            <button type="button" class="btn btn-danger remove-question">Remove Question</button>
+        </div>
+    `;
+
+    // Event listener to add questions
     addQuestionButton.addEventListener('click', function () {
         questionCount++;
-        var questionDiv = document.createElement('div');
-        questionDiv.classList.add('question-item', 'mb-3');
-        questionDiv.id = "question".concat(questionCount);
-        questionDiv.innerHTML = "\n            <label class=\"form-label\">Question ".concat(questionCount, "</label>\n            <input type=\"text\" class=\"form-control mb-2\" id=\"questionInput").concat(questionCount, "\" required>\n            <label class=\"form-label\">Answer</label>\n            <input type=\"text\" class=\"form-control mb-2\" id=\"answerInput").concat(questionCount, "\" required>\n            <button type=\"button\" class=\"btn btn-danger remove-question\">Remove Question</button>\n        ");
-        questionsContainer.appendChild(questionDiv);
-        var removeButton = questionDiv.querySelector('.remove-question');
-        removeButton.addEventListener('click', function () {
-            questionsContainer.removeChild(questionDiv);
-        });
+        const fragment = document.createDocumentFragment();
+        const div = document.createElement('div');
+        div.innerHTML = createQuestionBlock(questionCount);
+        fragment.appendChild(div.firstElementChild);  // Append the new question div
+        questionsContainer.appendChild(fragment);
     });
-    var quizForm = document.getElementById('quizForm');
+
+    // Event delegation for removing questions
+    questionsContainer.addEventListener('click', function (event) {
+        if (event.target.classList.contains('remove-question')) {
+            const questionDiv = event.target.closest('.question-item');
+            questionsContainer.removeChild(questionDiv);
+        }
+    });
+
+    // Event listener for form submission
     quizForm.addEventListener('submit', function (event) {
         event.preventDefault();
         // Implement your form submission logic here
         console.log('Quiz submitted');
-    });
-    // Add remove functionality to the first question
-    var firstRemoveButton = document.querySelector('.remove-question');
-    firstRemoveButton.addEventListener('click', function (event) {
-        var questionDiv = event.target.parentElement;
-        questionsContainer.removeChild(questionDiv);
     });
 });
